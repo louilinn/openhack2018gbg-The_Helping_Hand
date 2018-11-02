@@ -1,0 +1,12 @@
+- Mockup with pictures etc
+
+
+- Create a web interface
+	
+
+- Encryption
+	pictures?
+
+- Backend and storage
+	distributed back end?
+
