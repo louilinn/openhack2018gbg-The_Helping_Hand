@@ -21,6 +21,9 @@ const formTemplate = `
     <option selected value="">Choose label</option>
     <option value="Physical violence">Physical violence</option>
     <option value="Verbal abuse">Verbal abuse</option>
+    <option value="Sexual harassment">Sexual harassment</option>
+    <option value="Cyber bullying">Cyberbullying</option>
+    <option value="Retaliation">Retaliation</option>
   </select>
   </label>
   <div class="tags" style="display: none"></div>
@@ -35,6 +38,9 @@ const formTemplate = `
     <div class="submit-wrapper">
       <button type="submit" class="submit-button"><span>Send report</span><img src="./send_ic.svg" /></button>
     </div>
+  </div>
+  <div class="feedback-message--success">
+    <img src="./ic_check_circle.svg" /><span>Your report has been recorded!</span>
   </div>
 </form>
   <div class="toggle-wrapper">
@@ -57,12 +63,17 @@ const tagListEl = containerEl.querySelector('.tags');
 const messageInputEl = containerEl.querySelector('.message');
 const aliasInputEl = containerEl.querySelector('.alias');
 const formEl = containerEl.querySelector('.form-container');
+const successMessage = containerEl.querySelector('.feedback-message--success');
 
 
 // helpers ------------------------------
 const renderTags = tags => {
   return `<ul>${tags.map(t => `<li>${t}</li>`).join("")}</ul>`;
 };
+
+const toggleSuccessMessage = (show) => {
+  successMessage.classList.toggle('visible', show);
+}
 
 const toggleFormVisibility = (show) => {
   console.log(isFormAnimating);
@@ -113,7 +124,7 @@ formEl.addEventListener("submit", event => {
   var url = "http://localhost:3000/insert";
 
   fetch(url, {
-    method: "POST", 
+    method: "POST",
     mode: "cors",
     headers: {
       "Content-Type": "application/json"
@@ -124,7 +135,12 @@ formEl.addEventListener("submit", event => {
     .then(response => console.log("Success:", JSON.stringify(response)))
     .catch(error => console.error("Error:", error));
 
-  toggleFormVisibility(false);
+  toggleSuccessMessage(true);
+  setTimeout(() => {
+    formIsOpen = false;
+    toggleFormVisibility(false);
+    toggleSuccessMessage(false);
+  }, 1500);
 });
 
 handButtonEl.addEventListener('click', event => {

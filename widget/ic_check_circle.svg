@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="72px" height="72px" viewBox="0 0 72 72" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.1 (57501) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_check_circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M43,7.16666667 C23.22,7.16666667 7.16666667,23.22 7.16666667,43 C7.16666667,62.78 23.22,78.8333333 43,78.8333333 C62.78,78.8333333 78.8333333,62.78 78.8333333,43 C78.8333333,23.22 62.78,7.16666667 43,7.16666667 L43,7.16666667 Z M35.8333333,60.9166667 L17.9166667,43 L22.9691667,37.9475 L35.8333333,50.7758333 L63.0308333,23.5783333 L68.0833333,28.6666667 L35.8333333,60.9166667 L35.8333333,60.9166667 Z" id="path-1"></path>
+        <rect id="path-3" x="0" y="0" width="179" height="179"></rect>
+    </defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ic_check_circle" transform="translate(-7.000000, -7.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask"></g>
+            <g id="Colors/White" mask="url(#mask-2)">
+                <g transform="translate(-46.583333, -46.583333)">
+                    <mask id="mask-4" fill="white">
+                        <use xlink:href="#path-3"></use>
+                    </mask>
+                    <use id="White" stroke="none" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
