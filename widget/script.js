@@ -110,13 +110,10 @@ formEl.addEventListener("submit", event => {
     tags: selectedTags
   };
 
-  console.log(formData);
-  console.log(JSON.stringify(formData));
-  // todo post to api!
   var url = "http://localhost:3000/insert";
 
   fetch(url, {
-    method: "POST", // or 'PUT',
+    method: "POST", 
     mode: "cors",
     headers: {
       "Content-Type": "application/json"
@@ -124,7 +121,6 @@ formEl.addEventListener("submit", event => {
     body: JSON.stringify(formData), // data can be `string` or {object}!
     dataType: "json",
   })
-    // .then(res => res.json())
     .then(response => console.log("Success:", JSON.stringify(response)))
     .catch(error => console.error("Error:", error));
 
