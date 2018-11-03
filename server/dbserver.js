@@ -32,13 +32,26 @@ app.post("/insert", (req, res) => {
 });
 
 app.get("/reports", (req, res) => {
-  var sql =
-    "SELECT encryptedReport FROM Reports;";
+  var sql = "SELECT encryptedReport FROM Reports;";
   db.query(sql, (err, result, fields) => {
     if (err) throw err;
     res.send(result);
   });
 });
+
+app.get("/decryptedreports", (req, res) => {
+  var sql = "SELECT encryptedReport FROM Reports;";
+  db.query(sql, (err, result, fields) => {
+    if (err) throw err;
+    const decrypted = decrypt(result);
+    res.send(decrypted);
+  });
+});
+
+function decrypt(encrypted_json) {
+  const decrypted_json = encrypted_json;
+  return decrypted_json;
+}
 
 app.listen("3000", () => {
   console.log("Server started!!! :) ");
