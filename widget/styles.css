@@ -20,6 +20,15 @@ body {
   flex-direction: column;
   padding: 1rem;
   background-color: #eaeaea;
+  opacity: 0;
+}
+
+.form-container.visible {
+  animation: fadeIn 1s forwards;
+}
+
+.form-container.hidden {
+  animation: fadeOut 1s forwards;
 }
 
 .hand-toggle {
@@ -44,4 +53,14 @@ label {
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(10px); }
 }

@@ -30,6 +30,7 @@ const formTemplate = `
 `
 // state ------------------------------
 const selectedTags = [];
+let formIsOpen = false;
 
 // setup elements ------------------------------
 const containerEl = document.getElementById('helping-hand');
@@ -50,13 +51,24 @@ const renderTags = (tags) => {
 }
 
 const toggleFormVisibility = (show) => {
-  const prop = show ? 'flex' : 'none';
-  formEl.style.display = prop;
+  if (show){
+    formEl.style.display = 'flex'
+    formEl.classList.toggle('hidden', false);
+    formEl.classList.toggle('visible', true);
+  } else {
+    formEl.classList.toggle('hidden', true);
+    formEl.classList.toggle('visible', false);
+    setTimeout(() => {
+      formEl.style.display = 'none'
+    }, 1000)
+  }
+  /*const prop = show ? 'flex' : 'none';
+  formEl.style.display = prop;*/
 }
 
 // listeners ------------------------------
 tagSelectorEl.addEventListener('change', event => {
-  const value = e.currentTarget.value;
+  const value = event.currentTarget.value;
   if (value.length > 0 && !selectedTags.includes(value)){
     selectedTags.push(value);
     tagListEl.innerHTML = renderTags(selectedTags);
@@ -76,13 +88,16 @@ formEl.addEventListener('submit', event => {
 
   console.log(formData);
   // todo post to api!
+
+  toggleFormVisibility(false);
 })
 
 closeButton.addEventListener('click', event => {
+  formIsOpen = false;
   toggleFormVisibility(false);
 })
 
 handButtonEl.addEventListener('click', event => {
-  const visible = formEl.style.display !== 'none';
-  toggleFormVisibility(!visible);
+  formIsOpen = !formIsOpen;
+  toggleFormVisibility(formIsOpen);
 });
