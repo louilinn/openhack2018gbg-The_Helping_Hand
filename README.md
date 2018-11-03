@@ -3,7 +3,21 @@
 ## Chosen challenge
 Civic space from the Swedish society for nature conservation (SSNC/Naturskyddsföreningen)
 
+
+## Team
+Felix Franzén
+Louise Linné
+Miriam Ahlberg
+Roisatul Azizah
+Axel Friberg
+William Andersson
+
+
 ## Description
+
+
+## How to add the helping hand to your site
+
 
 ## How to run locally
 ### Create database
@@ -27,8 +41,6 @@ Then run 'node dbserver.js', to start local server on localhost:3000
 `/insert` POST for inserting reports in database
 
 `/reports` GET get encrypted reports
-
-## How to add the helping hand to your site
 
 
 #CivicSpace
