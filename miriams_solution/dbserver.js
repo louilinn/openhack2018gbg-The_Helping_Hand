@@ -20,8 +20,15 @@ db.connect(function(err) {
 
 const app = express();
 
-app.get("/insert", (req, res) => {
-  var sql = "INSERT INTO Reports (encryptedReport) VALUES ('hejhejlouise')";
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+// app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+app.post("/insert", (req, res) => {
+  console.log(req.body);
+  // var sql = "INSERT INTO Reports (encryptedReport) VALUES ("+JSON.stringify(req.body)+")";
+  var sql = "INSERT INTO Reports (encryptedReport) VALUES ('heeej')";
+  console.log(sql);
   db.query(sql, (err, result) => {
     if (err) throw err;
     console.log("result");
