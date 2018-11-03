@@ -110,7 +110,7 @@ formEl.addEventListener("submit", event => {
     alias,
     tag
   };
-
+//console.log(decryptMsg(encryptMsg(JSON.stringify(formData))));
   var url = "http://localhost:3000/insert";
 
   fetch(url, {
@@ -119,7 +119,7 @@ formEl.addEventListener("submit", event => {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(formData), // data can be `string` or {object}!
+    body: encryptMsg(JSON.stringify(formData)), // data can be `string` or {object}!
     dataType: "json",
   })
     .then(response => {
