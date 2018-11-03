@@ -4,6 +4,17 @@ body {
   margin: 0 auto;
 }
 
+#helping-hand {
+  position: fixed;
+  right: 10%;
+  bottom: 10%;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -11,6 +22,26 @@ body {
   background-color: #eaeaea;
 }
 
-select, textarea, input, button {
+.hand-toggle {
+  text-align: center;
+  width: auto;
+}
+
+.toggle-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+button {
   margin-top: 1rem;
+}
+
+textarea {
+  resize: none;
+}
+
+label {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
 }
