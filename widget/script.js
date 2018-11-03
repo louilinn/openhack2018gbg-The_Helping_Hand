@@ -1,49 +1,51 @@
 const formTemplate = `
 <div class="backdrop"></div>
 <div class="content-wrapper">
-<form class="form-container">
-  <div class="header">
-    <div class="header-title-container">
+  <form class="form-container">
+    <div class="header">
+      <div class="header-title-container">
         <div class="header-title">
           <div class="hand-icon">
             <img src="./hand.svg" />
           </div>
           <h5>The Helping Hand</h5>
+        </div>
+      </div>
+      <p>Tell us what happen, or report your concern.
+        Anonymous and secure.
+      </p>
+    </div>
+    <div class="form-content">
+      <label>
+        <span>Label</span>
+        <select class="tag-selector">
+          <option selected value="">Choose label</option>
+          <option value="Physical violence">Physical violence</option>
+          <option value="Verbal abuse">Verbal abuse</option>
+          <option value="Sexual harassment">Sexual harassment</option>
+          <option value="Cyber bullying">Cyberbullying</option>
+          <option value="Retaliation">Retaliation</option>
+          <option value="Threats">Threats</option>
+          <option value="Other">Other</option>
+        </select>
+      </label>
+      <div class="tags" style="display: none"></div>
+      <label>
+        <span>Incident description</span>
+        <textarea name="" id="" cols="30" rows="10" placeholder="What happened?" class="message"></textarea>
+      </label>
+      <label>
+        <span>Alias</span>
+        <input type="password" placeholder="Enter a secret alias" class="alias" />
+      </label>
+      <div class="submit-wrapper">
+        <button type="submit" class="submit-button"><span>Send report</span><img src="./send_ic.svg" /></button>
       </div>
     </div>
-    <p>Tell us what happen, or report your concern.
-      Anonymous and secure.
-    </p>
-  </div>
-  <div class="form-content">
-  <label>
-  <span>Label</span>
-  <select class="tag-selector">
-    <option selected value="">Choose label</option>
-    <option value="Physical violence">Physical violence</option>
-    <option value="Verbal abuse">Verbal abuse</option>
-    <option value="Sexual harassment">Sexual harassment</option>
-    <option value="Cyber bullying">Cyberbullying</option>
-    <option value="Retaliation">Retaliation</option>
-  </select>
-  </label>
-  <div class="tags" style="display: none"></div>
-  <label>
-    <span>Incident description</span>
-    <textarea name="" id="" cols="30" rows="10" placeholder="What happened?" class="message"></textarea>
-  </label>
-  <label>
-    <span>Alias</span>
-    <input type="text" placeholder="Enter a secret alias" class="alias"/>
-  </label>
-    <div class="submit-wrapper">
-      <button type="submit" class="submit-button"><span>Send report</span><img src="./send_ic.svg" /></button>
+    <div class="feedback-message--success">
+      <img src="./ic_check_circle.svg" /><span>Your report has been recorded!</span>
     </div>
-  </div>
-  <div class="feedback-message--success">
-    <img src="./ic_check_circle.svg" /><span>Your report has been recorded!</span>
-  </div>
-</form>
+  </form>
   <div class="toggle-wrapper">
     <button class="hand-toggle" type="submit"><img src="./hand.svg" /></button>
   </div>
@@ -64,6 +66,7 @@ const messageInputEl = containerEl.querySelector('.message');
 const aliasInputEl = containerEl.querySelector('.alias');
 const formEl = containerEl.querySelector('.form-container');
 const successMessage = containerEl.querySelector('.feedback-message--success');
+const backdropEl = containerEl.querySelector('.backdrop');
 
 
 // helpers ------------------------------
@@ -79,6 +82,7 @@ const toggleFormVisibility = (show) => {
     formEl.style.display = 'flex'
     formEl.classList.toggle('hidden', false);
     formEl.classList.toggle('visible', true);
+    backdropEl.classList.toggle('visible', true);
     isFormAnimating = true;
     setTimeout(() => {
       isFormAnimating = false;
@@ -86,14 +90,13 @@ const toggleFormVisibility = (show) => {
   } else {
     formEl.classList.toggle('hidden', true);
     formEl.classList.toggle('visible', false);
+    backdropEl.classList.toggle('visible', false);
     isFormAnimating = true;
     setTimeout(() => {
       formEl.style.display = 'none'
       isFormAnimating = false;
-    }, 1000)
+    }, 500)
   }
-  /*const prop = show ? 'flex' : 'none';
-  formEl.style.display = prop;*/
 };
 
 formEl.addEventListener("submit", event => {
@@ -143,3 +146,11 @@ handButtonEl.addEventListener('click', event => {
   formIsOpen = !formIsOpen;
   toggleFormVisibility(formIsOpen);
 });
+
+backdropEl.addEventListener('click', event => {
+  if (isFormAnimating){ return; }
+  if (formIsOpen) {
+    formIsOpen = false;
+    toggleFormVisibility(formIsOpen);
+  }
+})
