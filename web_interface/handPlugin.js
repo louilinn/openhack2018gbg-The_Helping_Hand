@@ -1,6 +1,8 @@
 // source http://dimsemenov.com/plugins/magnific-popup/
 $(document).ready(function() {
 	$('#hejha').magnificPopup({
+    items: {
+
 		type: 'inline',
 		preloader: false,
 		focus: '#name',
@@ -34,5 +36,6 @@ $(document).ready(function() {
 				}
 			}
 		}
+  }
 	});
 });
