@@ -45,8 +45,8 @@ CREATE TABLE `Reports` (
 
 ### Start server
 Make sure you have installed node.js.
-Go to ~/server and run 'npm install'.
-Then run 'node dbserver.js', to start local server on localhost:3000
+Go to `~/server` and run `npm install`.
+Then run `node dbserver.js`, to start local server on `localhost:3000`
 
 ### Endpoints
 `/insert` POST for inserting reports in database
