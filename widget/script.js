@@ -1,36 +1,51 @@
 const formTemplate = `
 <div class="content-wrapper">
-  <form class="form-container">
-    <button type="button" class="close">X</button>
-    <label>
-    <span>Tags</span>
-    <select class="tag-selector">
-      <option selected value="">Choose tags</option>
-      <option value="Physical violence">Physical violence</option>
-      <option value="Verbal abuse">Verbal abuse</option>
-    </select>
-    </label>
-    <div class="tags">
-
+<form class="form-container">
+  <div class="header">
+    <div class="header-title-container">
+        <div class="header-title">
+          <div class="hand-icon">
+            <img src="./hand.svg" />
+          </div>
+          <h5>The Helping Hand</h5>
+      </div>
     </div>
-    <label>
-      <span>Incident description</span>
-      <textarea name="" id="" cols="30" rows="10" placeholder="What happened?" class="message"></textarea>
-    </label>
-    <label>
-      <span>Alias</span>
-      <input type="text" placholder="alias" class="alias"/>
-    </label>
-    <button type="submit">Send report</button>
-  </form>
+    <p>Tell us what happen, or report your concern.
+      Anonymous and secure.
+    </p>
+  </div>
+  <div class="form-content">
+  <label>
+  <span>Label</span>
+  <select class="tag-selector">
+    <option selected value="">Choose label</option>
+    <option value="Physical violence">Physical violence</option>
+    <option value="Verbal abuse">Verbal abuse</option>
+  </select>
+  </label>
+  <div class="tags" style="display: none"></div>
+  <label>
+    <span>Incident description</span>
+    <textarea name="" id="" cols="30" rows="10" placeholder="What happened?" class="message"></textarea>
+  </label>
+  <label>
+    <span>Alias</span>
+    <input type="text" placeholder="Enter a secret alias" class="alias"/>
+  </label>
+    <div class="submit-wrapper">
+      <button type="submit" class="submit-button"><span>Send report</span><img src="./send_ic.svg" /></button>
+    </div>
+  </div>
+</form>
   <div class="toggle-wrapper">
-    <button class="hand-toggle" type="submit"><span>OPEN</span></button>
+    <button class="hand-toggle" type="submit"><img src="./hand.svg" /></button>
   </div>
 </div>
 `
 // state ------------------------------
 const selectedTags = [];
 let formIsOpen = false;
+let isFormAnimating = false;
 
 // setup elements ------------------------------
 const containerEl = document.getElementById('helping-hand');
@@ -42,7 +57,6 @@ const tagListEl = containerEl.querySelector('.tags');
 const messageInputEl = containerEl.querySelector('.message');
 const aliasInputEl = containerEl.querySelector('.alias');
 const formEl = containerEl.querySelector('.form-container');
-const closeButton = containerEl.querySelector('.close');
 
 
 // helpers ------------------------------
@@ -51,15 +65,25 @@ const renderTags = (tags) => {
 }
 
 const toggleFormVisibility = (show) => {
+  console.log(isFormAnimating);
+  if(isFormAnimating)
+    return;
+
   if (show){
     formEl.style.display = 'flex'
     formEl.classList.toggle('hidden', false);
     formEl.classList.toggle('visible', true);
+    isFormAnimating = true;
+    setTimeout(() => {
+      isFormAnimating = false;
+    }, 1000)
   } else {
     formEl.classList.toggle('hidden', true);
     formEl.classList.toggle('visible', false);
+    isFormAnimating = true;
     setTimeout(() => {
       formEl.style.display = 'none'
+      isFormAnimating = false;
     }, 1000)
   }
   /*const prop = show ? 'flex' : 'none';
@@ -92,12 +116,8 @@ formEl.addEventListener('submit', event => {
   toggleFormVisibility(false);
 })
 
-closeButton.addEventListener('click', event => {
-  formIsOpen = false;
-  toggleFormVisibility(false);
-})
-
 handButtonEl.addEventListener('click', event => {
+  if (isFormAnimating){ return; }
   formIsOpen = !formIsOpen;
   toggleFormVisibility(formIsOpen);
 });
