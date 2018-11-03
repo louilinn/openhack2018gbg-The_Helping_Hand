@@ -27,8 +27,12 @@ SWZtuwJBAN3kVZrXcEbQhNqFUf4zdm39N3jVRI67ibDCdehEICWLYAQDs/7FcawG
 ea5rieYJO0phOxbmZVF9v6NHzKZ9oE87PyJsDJFmWlyRtQrxKGEUrvsCQERG+LfQ
 xHtzH8LiSthEpcC/eTs9GjadSfM7Wg4x2eYtyLvD0BktIMHcR5EdGQp7K4fj51O2
 Sjf2HPIu/22eMSM=
------END PRIVATE KEY-----"; 
-var SHA256 = require("crypto-js/sha256")
+-----END PRIVATE KEY-----";
+
+var SHA256 = require("crypto-js/sha256");
+var JSEncrypt = require("jsencrypt");
+
+
 verification(identifier) {
 	var verification = SHA256(identifier);
 	return verification;
@@ -48,7 +52,7 @@ encryptTest(message) {
           var uncrypted = decrypt.decrypt(encrypted);
 
           // Now a simple check to see if the round-trip worked.
-          if (uncrypted == $('#input').val()) {
+          if (uncrypted == message) {
             alert('It works!!!');
           }
           else {
