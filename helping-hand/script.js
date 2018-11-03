@@ -6,7 +6,7 @@ const formTemplate = `
       <div class="header-title-container">
         <div class="header-title">
           <div class="hand-icon">
-            <img src="./hand.svg" />
+            <img src="../helping-hand/hand.svg" />
           </div>
           <h5>The Helping Hand</h5>
         </div>
@@ -39,15 +39,15 @@ const formTemplate = `
         <input type="password" placeholder="Enter a secret alias" class="alias" />
       </label>
       <div class="submit-wrapper">
-        <button type="submit" class="submit-button"><span>Send report</span><img src="./send_ic.svg" /></button>
+        <button type="submit" class="submit-button"><span>Send report</span><img src="../helping-hand/send_ic.svg" /></button>
       </div>
     </div>
     <div class="feedback-message--success">
-      <img src="./ic_check_circle.svg" /><span>Your report has been recorded!</span>
+      <img src="../helping-hand/ic_check_circle.svg" /><span>Your report has been recorded!</span>
     </div>
   </form>
   <div class="toggle-wrapper">
-    <button class="hand-toggle" type="submit"><img src="./hand.svg" /></button>
+    <button class="hand-toggle" type="submit"><img src="../helping-hand/hand.svg" /></button>
   </div>
 </div>
 `;
