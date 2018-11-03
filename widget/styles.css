@@ -1,0 +1,16 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #eaeaea;
+}
+
+select, textarea, input, button {
+  margin-top: 1rem;
+}
