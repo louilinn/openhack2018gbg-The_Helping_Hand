@@ -41,14 +41,14 @@ const formTemplate = `
     <button class="hand-toggle" type="submit"><img src="./hand.svg" /></button>
   </div>
 </div>
-`
+`;
 // state ------------------------------
 const selectedTags = [];
 let formIsOpen = false;
 let isFormAnimating = false;
 
 // setup elements ------------------------------
-const containerEl = document.getElementById('helping-hand');
+const containerEl = document.getElementById("helping-hand");
 containerEl.innerHTML = formTemplate;
 
 const handButtonEl = containerEl.querySelector('.hand-toggle');
@@ -60,9 +60,9 @@ const formEl = containerEl.querySelector('.form-container');
 
 
 // helpers ------------------------------
-const renderTags = (tags) => {
-  return `<ul>${tags.map(t => `<li>${t}</li>`).join('')}</ul>`
-}
+const renderTags = tags => {
+  return `<ul>${tags.map(t => `<li>${t}</li>`).join("")}</ul>`;
+};
 
 const toggleFormVisibility = (show) => {
   console.log(isFormAnimating);
@@ -88,18 +88,18 @@ const toggleFormVisibility = (show) => {
   }
   /*const prop = show ? 'flex' : 'none';
   formEl.style.display = prop;*/
-}
+};
 
 // listeners ------------------------------
-tagSelectorEl.addEventListener('change', event => {
+tagSelectorEl.addEventListener("change", event => {
   const value = event.currentTarget.value;
-  if (value.length > 0 && !selectedTags.includes(value)){
+  if (value.length > 0 && !selectedTags.includes(value)) {
     selectedTags.push(value);
     tagListEl.innerHTML = renderTags(selectedTags);
   }
 });
 
-formEl.addEventListener('submit', event => {
+formEl.addEventListener("submit", event => {
   event.preventDefault();
   const message = messageInputEl.value;
   const alias = aliasInputEl.value;
@@ -108,13 +108,28 @@ formEl.addEventListener('submit', event => {
     message,
     alias,
     tags: selectedTags
-  }
+  };
 
   console.log(formData);
+  console.log(JSON.stringify(formData));
   // todo post to api!
+  var url = "http://localhost:3000/insert";
+
+  fetch(url, {
+    method: "POST", // or 'PUT',
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData), // data can be `string` or {object}!
+    dataType: "json",
+  })
+    // .then(res => res.json())
+    .then(response => console.log("Success:", JSON.stringify(response)))
+    .catch(error => console.error("Error:", error));
 
   toggleFormVisibility(false);
-})
+});
 
 handButtonEl.addEventListener('click', event => {
   if (isFormAnimating){ return; }
