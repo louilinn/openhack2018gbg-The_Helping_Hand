@@ -1,4 +1,5 @@
 const formTemplate = `
+<div class="backdrop"></div>
 <div class="content-wrapper">
 <form class="form-container">
   <div class="header">
@@ -59,7 +60,6 @@ containerEl.innerHTML = formTemplate;
 
 const handButtonEl = containerEl.querySelector('.hand-toggle');
 const tagSelectorEl = containerEl.querySelector('.tag-selector');
-const tagListEl = containerEl.querySelector('.tags');
 const messageInputEl = containerEl.querySelector('.message');
 const aliasInputEl = containerEl.querySelector('.alias');
 const formEl = containerEl.querySelector('.form-container');
@@ -67,16 +67,11 @@ const successMessage = containerEl.querySelector('.feedback-message--success');
 
 
 // helpers ------------------------------
-const renderTags = tags => {
-  return `<ul>${tags.map(t => `<li>${t}</li>`).join("")}</ul>`;
-};
-
 const toggleSuccessMessage = (show) => {
   successMessage.classList.toggle('visible', show);
 }
 
 const toggleFormVisibility = (show) => {
-  console.log(isFormAnimating);
   if(isFormAnimating)
     return;
 
@@ -101,24 +96,16 @@ const toggleFormVisibility = (show) => {
   formEl.style.display = prop;*/
 };
 
-// listeners ------------------------------
-tagSelectorEl.addEventListener("change", event => {
-  const value = event.currentTarget.value;
-  if (value.length > 0 && !selectedTags.includes(value)) {
-    selectedTags.push(value);
-    tagListEl.innerHTML = renderTags(selectedTags);
-  }
-});
-
 formEl.addEventListener("submit", event => {
   event.preventDefault();
   const message = messageInputEl.value;
   const alias = aliasInputEl.value;
+  const tag = tagSelectorEl.value;
 
   const formData = {
     message,
     alias,
-    tags: selectedTags
+    tag
   };
 
   var url = "http://localhost:3000/insert";
@@ -132,15 +119,23 @@ formEl.addEventListener("submit", event => {
     body: JSON.stringify(formData), // data can be `string` or {object}!
     dataType: "json",
   })
-    .then(response => console.log("Success:", JSON.stringify(response)))
-    .catch(error => console.error("Error:", error));
+    .then(response => {
 
-  toggleSuccessMessage(true);
-  setTimeout(() => {
-    formIsOpen = false;
-    toggleFormVisibility(false);
-    toggleSuccessMessage(false);
-  }, 1500);
+      tagSelectorEl.value = ''
+      messageInputEl.value = ''
+      aliasInputEl.value = ''
+
+      console.log("Success:", JSON.stringify(response))
+      toggleSuccessMessage(true);
+      setTimeout(() => {
+        formIsOpen = false;
+        toggleFormVisibility(false);
+        toggleSuccessMessage(false);
+      }, 1500);
+    })
+    .catch(error => {
+      console.error("Error:", error)
+    });
 });
 
 handButtonEl.addEventListener('click', event => {
