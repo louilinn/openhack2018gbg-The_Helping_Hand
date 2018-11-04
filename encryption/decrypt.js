@@ -15,12 +15,14 @@ const privKey = "-----BEGIN PRIVATE KEY-----\n" +
 "Sjf2HPIu/22eMSM=\n" +
 "-----END PRIVATE KEY-----"; 
 
+const NodeRSA = require('../server/node_modules/node-rsa');
+
 function decryptMsg(encryptedMsg) {
 	// Decrypt with the private key...
-	var decrypt = new JSEncrypt();
-	decrypt.setPrivateKey(privKey);
-	var uncrypted = decrypt.decrypt(encryptedMsg);
-	return uncrypted;
+	const decrypter = new NodeRSA(privKey);
+	decrypter.setOptions({encryptionScheme: 'pkcs1'});
+	const decryptedData = decrypter.decrypt(encryptedMsg, 'utf8');
+	return decryptedData;
 };
 module.exports.decryptMsg = decryptMsg;
 
