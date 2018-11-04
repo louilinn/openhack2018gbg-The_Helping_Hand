@@ -25,6 +25,7 @@ HTML, CSS, JavaScript
 * Miriam Ahlberg 
 * Roisatul Azizah 
 * William Andersson
+* Daniel Hamngren
 
 #CivicSpace
 #EnvironmentalDefenders
