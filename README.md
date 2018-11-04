@@ -19,11 +19,11 @@ MySQL, NodeJS, JSEncrypt
 HTML, CSS, JavaScript
 
 ## Team members
-* Axel Friberg, 
-* Felix Franzén, 
-* Louise Linné, 
-* Miriam Ahlberg, 
-* Roisatul Azizah, 
+* Axel Friberg
+* Felix Franzén 
+* Louise Linné 
+* Miriam Ahlberg 
+* Roisatul Azizah 
 * William Andersson
 
 #CivicSpace
@@ -55,8 +55,5 @@ Then run `node dbserver.js`, to start local server on `localhost:3000`
 
 ## How to add the helping hand to your site
 
-
-#CivicSpace
-#EnvironmentalDefenders
 
 [Presentation](https://docs.google.com/presentation/d/1twS3HQCtWpYRTG477UpFG1ez8Sij0Vri6w2kSIZ9Ghc/edit#slide=id.g35f391192_00)
