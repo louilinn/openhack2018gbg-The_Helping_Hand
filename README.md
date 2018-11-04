@@ -58,3 +58,5 @@ Then run `node dbserver.js`, to start local server on `localhost:3000`
 
 #CivicSpace
 #EnvironmentalDefenders
+
+[Presentation](https://docs.google.com/presentation/d/1twS3HQCtWpYRTG477UpFG1ez8Sij0Vri6w2kSIZ9Ghc/edit#slide=id.g35f391192_00)
