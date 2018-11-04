@@ -22,5 +22,5 @@ function decryptMsg(encryptedMsg) {
 	var uncrypted = decrypt.decrypt(encryptedMsg);
 	return uncrypted;
 };
-module.export.decryptMsg = decryptMsg;
+module.exports.decryptMsg = decryptMsg;
 
