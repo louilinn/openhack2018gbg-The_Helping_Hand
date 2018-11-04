@@ -119,7 +119,9 @@ formEl.addEventListener("submit", event => {
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(formData), // encryptMsg(JSON.stringify(formData)), // data can be `string` or {object}!
+    body: JSON.stringify({ 
+      content: encryptMsg(JSON.stringify(formData)) 
+    }), // data can be `string` or {object}!
     dataType: "json",
   })
     .then(response => {

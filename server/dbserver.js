@@ -24,7 +24,7 @@ app.use(utils.accessControlAllowOrigin);
 app.post("/insert", (req, res) => {
   var sql =
     "INSERT INTO Reports (encryptedReport) VALUES ('" +
-    JSON.stringify(req.body) +
+    JSON.stringify(req.body.content) +
     "')";
   db.query(sql, (err, result) => {
     if (err) throw err;
