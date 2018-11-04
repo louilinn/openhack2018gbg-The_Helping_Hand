@@ -1,4 +1,4 @@
-const decryptMsg = require("../encryption/decrypt.js").decryptMsg; 
+const decryptMsg = require("../encryption/decrypt.js").decryptMsg;
 const mysql = require("mysql");
 const express = require("express");
 const utils = require("./utils");
@@ -44,12 +44,14 @@ app.get("/decryptedreports", (req, res) => {
   var sql = "SELECT encryptedReport FROM Reports;";
   db.query(sql, (err, result, fields) => {
     if (err) throw err;
-    const decrypted = decryptMsg(result);
-    res.send(decrypted);
+    decryptedReports = [];
+    for (var i in result) {
+      var decrypted = JSON.parse(decryptMsg(result[i].encryptedReport));
+      decryptedReports.push(decrypted);
+    }
+    res.send(decryptedReports);
   });
 });
-
-
 
 app.listen("3000", () => {
   console.log("Server started!!! :) ");
